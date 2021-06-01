@@ -19,6 +19,10 @@ client.connect(err => {
   const productsCollection = client.db("emaWatson").collection("emaWatsonPotter81");
   const ordersCollection = client.db("emaWatson").collection("orders");
   
+  app.get("/", (req, res) => {
+    res.send("This is Working Fine!!")
+  })
+
   app.post('/addProduct', (req, res) => {
     const products = req.body;
     productsCollection.insertMany(products)
@@ -62,4 +66,4 @@ client.connect(err => {
 });
 
 
-app.listen(port);
+app.listen(process.env.PORT||port);
